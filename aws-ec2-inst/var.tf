@@ -15,11 +15,6 @@ variable "inst_type" {
   default     = "t2.micro"
 }
 
-variable "inst_security_group" {
-  description = "Security group ID for the instance"
-  default     = ["sg-0414ac530553104aa"]
-}
-
 variable "inst_pem_key" {
   description = "Name of the PEM key pair used for SSH access"
   default     = "dixit-n-virg"
