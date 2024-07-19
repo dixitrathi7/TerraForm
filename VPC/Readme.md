@@ -10,3 +10,4 @@ This script is create the VPC component like
 After Route Table is create then it automatically attach to the subnet
 - Every Route Table have there own rule 
 #### Similarly IGW is automatically attach to the VPC 
+## And use S3 Bucket to store terraform .tfstate file 
