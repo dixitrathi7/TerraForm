@@ -1,0 +1,50 @@
+controller:
+  replicaCount: 1
+
+  ingressClassResource:
+    name: nginx
+    enabled: true
+    default: true
+
+  ingressClass: nginx
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
+    limits:
+      cpu: 300m
+      memory: 256Mi
+
+  service:
+    type: LoadBalancer
+
+    annotations:
+      service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "ip"
+      service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
+      service.beta.kubernetes.io/aws-load-balancer-type: "alb"
+      service.beta.kubernetes.io/aws-load-balancer-healthcheck-protocol: http
+
+    externalTrafficPolicy: Local
+
+  metrics:
+    enabled: true
+
+    serviceMonitor:
+      enabled: false
+
+  admissionWebhooks:
+    enabled: true
+
+  autoscaling:
+    enabled: false
+
+defaultBackend:
+  enabled: true
+
+rbac:
+  create: true
+  
+
+# helm install ingress-nginx ingress-nginx/ingress-nginx -n ingress-nginx --create-namespace -f eks_nginx_value.yaml
